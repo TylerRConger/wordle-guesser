@@ -1,5 +1,5 @@
 ## Word Guessing Game
-Solve your Wordle answers 
+Solve your Wordle answers created by Tyler Conger
 
 ### Installation
 1. Clone the repository:
