@@ -39,12 +39,12 @@ def graphHisto(alphabet_dict):
     plt.bar(letters, freqs, color='skyblue')
 
     # Add title and labels
-    plt.title('Frequency of Letters in Text')
+    plt.title('Frequency of Letters from Word List')
     plt.xlabel('Letters')
     plt.ylabel('Frequency')
 
-    # Show the plot
-    plt.show()
+    # Save the plot
+    plt.savefig('Frequency.png')
 
 # Sort the words by how many 'good' letters they contain, more common letters is better, but no duplicate letters
 def wordScorer(word, freqs):

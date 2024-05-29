@@ -104,7 +104,8 @@ def guesser(words, verbose=False, random=False):
         guess = words[0]
 
     
-
+    if verbose:
+        print("There are " + str(len(words)) + " potential words remaining.")
     # Make an initial guess
     print("Guess 1: " + guess) 
 
@@ -149,6 +150,8 @@ def guesser(words, verbose=False, random=False):
             guess = words[0]
 
 
+        if verbose:
+            print("There are " + str(len(words)) + " potential words remaining.")
         print("Guess " + str(GUESS_NUM) + ": " + guess)
         solved = input("Did we solve it? (y/n): ")
             
