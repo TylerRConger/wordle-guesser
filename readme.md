@@ -29,6 +29,7 @@ python script.py [-h] [-v] [-f FILENAME]
 -h, --help: Show help message and exit.
 -v, --verbose: Increase output verbosity.
 -f FILENAME, --filename FILENAME: Specify a filename. The file can be in JSON or CSV format containing the list of words. If not provided, the script will default to using 'sortedWords.json'.
+-r, --random: Instead of picking only first (best) option, pick a random one to make the game different each day.
 
 ### Gameplay Instructions:
 1. The script will make an initial guess based on the word list.

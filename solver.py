@@ -97,10 +97,13 @@ def blackFilter(words_list):
 def guesser(words, verbose=False, random=False):
     global GUESS_NUM
 
+    # If its random, randomly pick
     if random:
         guess = words[randint(0, len(words))]
     else:
         guess = words[0]
+
+    
 
     # Make an initial guess
     print("Guess 1: " + guess) 
@@ -151,8 +154,8 @@ def guesser(words, verbose=False, random=False):
             
 
 if __name__ == "__main__":
-    # Initialize ArgumentParser
 
+    # Initialize ArgumentParser
     parser = argparse.ArgumentParser(description="Word Guessing Game")
     parser.add_argument("-v", "--verbose", action="store_true", help="Increase output verbosity")
     parser.add_argument("-r", "--random", action="store_true", help="Instead of picking only first (best) option, pick a random one to make the game different each day")
@@ -160,7 +163,6 @@ if __name__ == "__main__":
     #parser.add_argument("-h", "--help", action="help", help="Show this help message and exit")
 
     args = parser.parse_args()
-
 
     if args.filename:
         # If you pass a json do it right please, and make it look like mine
