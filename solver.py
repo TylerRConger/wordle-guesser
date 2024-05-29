@@ -100,6 +100,19 @@ def guesser(words, verbose=False, random=False):
     # If its random, randomly pick
     if random:
         guess = words[randint(0, len(words))]
+    # If verbose let them pick from the first few
+    elif verbose:
+        topGuesses = words[:5]
+        
+        # Step 1: Create a formatted string for each element with its index
+        formatted_elements = ', '.join(f"{index + 1}: {element}" for index, element in enumerate(topGuesses))
+
+        # Step 2: Format the final string
+        formatted_string = f"Which of the best guesses would you like ({formatted_elements}): "
+
+        selection = input(formatted_string)
+        guess = words[int(selection) - 1]
+    # Otherwise just pick the absolute best
     else:
         guess = words[0]
 
@@ -116,18 +129,19 @@ def guesser(words, verbose=False, random=False):
     while (solved != 'y'):
         # Gather yellow inputs
         yellowsString = input("What were the yellows? (Format _y_er): ")
+
         # Gather green inputs
         greensString = input("What were the greens? (Format t_l__): ")
 
         # Default to empty
-        if yellowsString == "":
-            yellowsString = "_____"
+        while (len(yellowsString) < len(guess)):
+            yellowsString += "_"
         
-        if greensString == "":
-            greensString = "_____"
+        while (len(greensString) < len(guess)):
+            greensString += "_"
 
         # Convert to dictionary
-        for i in range(0,5):
+        for i in range(0,len(guess)):
             if yellowsString[i] != '_':
                 YELLOW_LETTERS[i + 1] =  yellowsString[i]
             if greensString[i] != '_':
@@ -144,8 +158,22 @@ def guesser(words, verbose=False, random=False):
         # List possible guesses
             # List a best guess with most used letters
         GUESS_NUM = GUESS_NUM + 1
+        # If its random, randomly pick
         if random:
             guess = words[randint(0, len(words))]
+        # If verbose let them pick from the first few
+        elif verbose:
+            topGuesses = words[:5]
+        
+            # Step 1: Create a formatted string for each element with its index
+            formatted_elements = ', '.join(f"{index + 1}: {element}" for index, element in enumerate(topGuesses))
+
+            # Step 2: Format the final string
+            formatted_string = f"Which of the best guesses would you like ({formatted_elements}): "
+
+            selection = input(formatted_string)
+            guess = words[int(selection) - 1]
+        # Otherwise just pick the absolute best
         else:
             guess = words[0]
 
@@ -160,7 +188,7 @@ if __name__ == "__main__":
 
     # Initialize ArgumentParser
     parser = argparse.ArgumentParser(description="Word Guessing Game")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Increase output verbosity")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Increase game verbose-ness as well as allowing for picking word at each round")
     parser.add_argument("-r", "--random", action="store_true", help="Instead of picking only first (best) option, pick a random one to make the game different each day")
     parser.add_argument("-f", "--filename", nargs='?', help="Use a new file for the dictionary (not the default one). Try and use a csv file, but might work with other types too!?")
     #parser.add_argument("-h", "--help", action="help", help="Show this help message and exit")
